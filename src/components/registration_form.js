@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Redirect, useHistory } from "react-router-dom";
-import Confirmation from "./confirmation";
+import { useHistory } from "react-router-dom";
 
 const pleaseSignIn = {
   marginTop: "20px",
