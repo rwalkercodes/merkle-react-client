@@ -32,7 +32,11 @@ const RegistrationForm = () => {
         "http://merkle-express-env.eba-hkhxpudm.us-east-2.elasticbeanstalk.com/register",
         {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Credentials": true,
+            "Access-Control-Allow-Origin": "*",
+          },
           body: JSON.stringify(user),
         }
       );

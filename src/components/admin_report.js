@@ -6,7 +6,14 @@ const AdminReport = () => {
   const getUsers = async () => {
     try {
       const response = await fetch(
-        "http://merkle-express-env.eba-hkhxpudm.us-east-2.elasticbeanstalk.com/admin-report"
+        "http://merkleserver-env.eba-hkhxpudm.us-east-2.elasticbeanstalk.com/admin-report/",
+        {
+          method: "GET",
+          headers: {
+            "Access-Control-Allow-Credentials": true,
+            "Access-Control-Allow-Origin": "*",
+          },
+        }
       );
       const data = await response.json();
       setAllUsers(data);
