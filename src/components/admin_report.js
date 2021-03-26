@@ -5,7 +5,9 @@ const AdminReport = () => {
 
   const getUsers = async () => {
     try {
-      const response = await fetch("http://localhost:5000/admin-report");
+      const response = await fetch(
+        "http://merkle-express-env.eba-hkhxpudm.us-east-2.elasticbeanstalk.com/admin-report"
+      );
       const data = await response.json();
       setAllUsers(data);
     } catch (err) {

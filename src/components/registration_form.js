@@ -28,11 +28,14 @@ const RegistrationForm = () => {
 
   const register = async (user) => {
     try {
-      await fetch("http://localhost:5000/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(user),
-      });
+      await fetch(
+        "http://merkle-express-env.eba-hkhxpudm.us-east-2.elasticbeanstalk.com/register",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(user),
+        }
+      );
       history.push({
         pathname: "confirmation",
       });
