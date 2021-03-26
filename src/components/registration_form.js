@@ -24,7 +24,7 @@ const RegistrationForm = () => {
   const [city, setCity] = useState("");
   const [stateAbr, setStateAbr] = useState("");
   const [zipCode, setZipCode] = useState("");
-  const [country, setCountry] = useState("");
+  const [country, setCountry] = useState("US");
 
   const register = async (user) => {
     try {
@@ -195,6 +195,7 @@ const RegistrationForm = () => {
           className="form-control"
           style={inputs}
           value={country}
+          readOnly={true}
           onChange={(e) => {
             setCountry(e.target.value);
           }}
