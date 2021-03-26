@@ -6,7 +6,7 @@ const AdminReport = () => {
   const getUsers = async () => {
     try {
       const response = await fetch(
-        "http://merkleserver-env.eba-hkhxpudm.us-east-2.elasticbeanstalk.com/admin-report/",
+        "http://merkle-express-env.eba-hkhxpudm.us-east-2.elasticbeanstalk.com/admin-report/",
         {
           method: "GET",
           headers: {
