@@ -36,6 +36,7 @@ const RegistrationForm = () => {
             "Content-Type": "application/json",
             "Access-Control-Allow-Credentials": true,
             "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Headers": "*",
           },
           body: JSON.stringify(user),
         }

@@ -13,12 +13,14 @@ const AdminReport = () => {
             "Content-Type": "application/json",
             "Access-Control-Allow-Credentials": true,
             "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Headers": "*",
           },
         }
       );
       const data = await response.json();
       setAllUsers(data);
     } catch (err) {
+      console.log(err);
       alert("There was an error: " + err.message);
     }
   };
