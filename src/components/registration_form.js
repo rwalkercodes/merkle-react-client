@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { stateAbbreviations } from "../helpers/state_abbreviations";
 
 const pleaseSignIn = {
   marginTop: "20px",
@@ -167,7 +168,18 @@ const RegistrationForm = () => {
           }}
         />
         <label style={labels}>State Abbreviation</label>
-        <input
+        <select
+          style={inputs}
+          onChange={(e) => {
+            setStateAbr(e.target.value);
+          }}
+          // value={stateAbr}
+        >
+          {stateAbbreviations.map((index) => {
+            return <option>{index}</option>;
+          })}
+        </select>
+        {/* <input
           type="text"
           className="form-control"
           style={inputs}
@@ -175,7 +187,7 @@ const RegistrationForm = () => {
           onChange={(e) => {
             setStateAbr(e.target.value);
           }}
-        />
+        /> */}
         <br />
         <label style={labels}>Zip Code</label>
         <input
