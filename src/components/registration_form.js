@@ -20,11 +20,6 @@ const padding = {
   padding: "5px",
 };
 
-const addressLabel = {
-  marginLeft: "35px",
-  marginRight: "10px",
-};
-
 const RegistrationForm = () => {
   const history = useHistory();
   const [firstName, setFirstName] = useState("");
@@ -32,7 +27,7 @@ const RegistrationForm = () => {
   const [address1, setAddress1] = useState("");
   const [address2, setAddress2] = useState("");
   const [city, setCity] = useState("");
-  const [stateAbr, setStateAbr] = useState("");
+  const [state, setState] = useState("");
   const [zipCode, setZipCode] = useState("");
   const [country, setCountry] = useState("US");
 
@@ -62,54 +57,84 @@ const RegistrationForm = () => {
   const validateFields = () => {
     let isValid = true;
     let errors = [];
-    const userDto = {
-      firstName: firstName,
-      lastName: lastName,
-      address1: address1,
-      address2: address2,
-      city: city,
-      stateAbbrev: stateAbr,
-      zipCode: zipCode,
-      country: country,
+
+    const user = {
+      firstName: {
+        key: "First Name",
+        value: firstName,
+      },
+      lastName: {
+        key: "Last Name",
+        value: lastName,
+      },
+      address1: {
+        key: "Address 1",
+        value: address1,
+      },
+      address2: {
+        key: "Address 2",
+        value: address2,
+      },
+      city: {
+        key: "City",
+        value: city,
+      },
+      state: {
+        key: "State",
+        value: state,
+      },
+      zipCode: {
+        key: "Zip Code",
+        value: zipCode,
+      },
+      country: {
+        key: "Country",
+        value: country,
+      },
     };
 
-    for (let i in userDto) {
-      if (userDto[i] !== undefined) {
+    const formLabels = {
+      firstName: "First Name",
+      lastName: "Last Name",
+      address1: "Address 1",
+      address2: "Address 2",
+      city: "City",
+      stateAbbrev: "State",
+      zipCode: "Zip Code",
+      country: "Country",
+    };
+
+    for (let i in user) {
+      if (user[i].value !== undefined) {
         if (i !== "address2") {
-          if (i === "stateAbbrev") {
-            if (userDto[i].length !== 2) {
-              errors.push(" State Abbreviation must be exactly 2 characters. ");
-              isValid = false;
-            }
-          }
-          if (i === "country" && userDto[i] !== "US") {
-            errors.push(" Country must be US. ");
+          if (i === "stateAbbrev" && user[i].value === "--Select an option--") {
+            errors.push("State");
             isValid = false;
           }
           if (i === "zipCode") {
-            if (userDto[i].length === 5 || userDto[i].length === 9) {
-              setZipCode(parseInt(userDto[i]));
-            } else if (userDto[i].length === undefined) {
+            if (user[i].value.length === 5 || user[i].value.length === 9) {
+              setZipCode(parseInt(user[i]));
+            } else if (user[i].value.length === undefined) {
               errors.push("Please re-ender your zip code.");
               isValid = false;
-            } else {
-              errors.push(" Zip Code must be an integer length of 5 or 9. ");
+            } else if (user[i].value !== "") {
+              errors.push("Zip Code must be an integer length of 5 or 9");
               isValid = false;
             }
           }
-          if (userDto[i] === "") {
-            errors.push(" " + i + " must not be left blank ");
+          if (user[i].value === "") {
+            errors.push(" " + user[i].key + " is required ");
             isValid = false;
           }
         }
       } else {
-        errors.push(userDto[i]);
-        alert("Please re-enter these fields: " + errors);
+        errors.push(user[i].key);
+        alert("Please re-enter fields: " + errors);
       }
     }
 
     if (isValid) {
-      register(userDto);
+      register(user);
     } else {
       alert(errors);
     }
@@ -215,9 +240,9 @@ const RegistrationForm = () => {
               width: "145px",
             }}
             onChange={(e) => {
-              setStateAbr(e.target.value);
+              setState(e.target.value);
             }}
-            // value={stateAbr}
+            // value={state}
           >
             {stateAbbreviations.map((index) => {
               return <option>{index}</option>;
