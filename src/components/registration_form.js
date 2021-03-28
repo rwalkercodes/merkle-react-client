@@ -16,6 +16,15 @@ const inputs = {
   marginRight: "75px",
 };
 
+const padding = {
+  padding: "5px",
+};
+
+const addressLabel = {
+  marginLeft: "35px",
+  marginRight: "10px",
+};
+
 const RegistrationForm = () => {
   const history = useHistory();
   const [firstName, setFirstName] = useState("");
@@ -115,103 +124,135 @@ const RegistrationForm = () => {
     <form className="text-center" onSubmit={validate}>
       <div style={pleaseSignIn}>Registration Form</div>
       <div>
-        <label style={labels}>First Name</label>
-        <input
-          type="text"
-          className="form-control"
-          style={inputs}
-          value={firstName}
-          onChange={(e) => {
-            setFirstName(e.target.value);
-          }}
-        />
-        <label style={labels}>Last Name</label>
-        <input
-          type="text"
-          className="form-control"
-          style={inputs}
-          value={lastName}
-          onChange={(e) => {
-            setLastName(e.target.value);
-          }}
-        />
-        <br />
-        <label style={labels}>Address 1</label>
-        <input
-          type="text"
-          className="form-control"
-          style={inputs}
-          value={address1}
-          onChange={(e) => {
-            setAddress1(e.target.value);
-          }}
-        />
-        <label style={labels}>Address 2</label>
-        <input
-          type="text"
-          className="form-control"
-          style={inputs}
-          value={address2}
-          onChange={(e) => {
-            setAddress2(e.target.value);
-          }}
-        />
-        <br />
-        <label style={labels}>City</label>
-        <input
-          type="text"
-          className="form-control"
-          style={inputs}
-          value={city}
-          onChange={(e) => {
-            setCity(e.target.value);
-          }}
-        />
-        <label style={labels}>State Abbreviation</label>
-        <select
-          style={inputs}
-          onChange={(e) => {
-            setStateAbr(e.target.value);
-          }}
-          // value={stateAbr}
-        >
-          {stateAbbreviations.map((index) => {
-            return <option>{index}</option>;
-          })}
-        </select>
-        {/* <input
-          type="text"
-          className="form-control"
-          style={inputs}
-          value={stateAbr}
-          onChange={(e) => {
-            setStateAbr(e.target.value);
-          }}
-        /> */}
-        <br />
-        <label style={labels}>Zip Code</label>
-        <input
-          type="text"
-          pattern="[0-9]*"
-          className="form-control"
-          style={inputs}
-          value={zipCode}
-          placeholder="Numeric value of 5 or 9"
-          onChange={(e) => {
-            if (e.target.validity.valid) setZipCode(e.target.value);
-          }}
-        />
-        <label style={labels}>Country</label>
-        <input
-          type="text"
-          className="form-control"
-          style={inputs}
-          value={country}
-          readOnly={true}
-          onChange={(e) => {
-            setCountry(e.target.value);
-          }}
-        />
+        <div style={padding}>
+          <label style={labels}>First Name</label>
+          <input
+            type="text"
+            className="form-control"
+            style={inputs}
+            value={firstName}
+            onChange={(e) => {
+              setFirstName(e.target.value);
+            }}
+          />
+        </div>
+        <div style={padding}>
+          <label style={labels}>Last Name</label>
+          <input
+            type="text"
+            className="form-control"
+            style={inputs}
+            value={lastName}
+            onChange={(e) => {
+              setLastName(e.target.value);
+            }}
+          />
+        </div>
+        <div style={padding}>
+          <label
+            style={{
+              marginLeft: "35px",
+              marginRight: "11px",
+            }}
+          >
+            Address 1
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            style={inputs}
+            value={address1}
+            onChange={(e) => {
+              setAddress1(e.target.value);
+            }}
+          />
+        </div>
+        <div style={padding}>
+          <label
+            style={{
+              marginLeft: "35px",
+              marginRight: "8px",
+            }}
+          >
+            Address 2
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            style={inputs}
+            value={address2}
+            onChange={(e) => {
+              setAddress2(e.target.value);
+            }}
+          />
+        </div>
+        <div style={{ marginLeft: "43px", padding: "5px" }}>
+          <label
+            style={{
+              marginLeft: "35px",
+              marginRight: "9px",
+            }}
+          >
+            City
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            style={inputs}
+            value={city}
+            onChange={(e) => {
+              setCity(e.target.value);
+            }}
+          />
+        </div>
+        <div style={padding}>
+          <label style={{ marginLeft: "35px", marginRight: "9px" }}>
+            State
+          </label>
+          <select
+            style={{
+              marginRight: "39px",
+              width: "145px",
+            }}
+            onChange={(e) => {
+              setStateAbr(e.target.value);
+            }}
+            // value={stateAbr}
+          >
+            {stateAbbreviations.map((index) => {
+              return <option>{index}</option>;
+            })}
+          </select>
+        </div>
+        <div style={{ padding: "5px", marginLeft: "10px" }}>
+          <label style={labels}>Zip Code</label>
+          <input
+            type="text"
+            pattern="[0-9]*"
+            className="form-control"
+            style={inputs}
+            value={zipCode}
+            placeholder="Numeric value of 5 or 9"
+            onChange={(e) => {
+              if (e.target.validity.valid) setZipCode(e.target.value);
+            }}
+          />
+        </div>
+        <div style={{ padding: "5px", marginLeft: "15px" }}>
+          <label style={{ marginLeft: "35px", marginRight: "8px" }}>
+            Country
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            style={inputs}
+            value={country}
+            readOnly={true}
+            onChange={(e) => {
+              setCountry(e.target.value);
+            }}
+          />
+        </div>
       </div>
       <button style={pleaseSignIn} type="submit">
         Register
