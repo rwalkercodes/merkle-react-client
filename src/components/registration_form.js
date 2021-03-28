@@ -93,17 +93,6 @@ const RegistrationForm = () => {
       },
     };
 
-    const formLabels = {
-      firstName: "First Name",
-      lastName: "Last Name",
-      address1: "Address 1",
-      address2: "Address 2",
-      city: "City",
-      stateAbbrev: "State",
-      zipCode: "Zip Code",
-      country: "Country",
-    };
-
     for (let i in user) {
       if (user[i].value !== undefined) {
         if (i !== "address2") {
@@ -123,7 +112,7 @@ const RegistrationForm = () => {
             }
           }
           if (user[i].value === "") {
-            errors.push(" " + user[i].key + " is required ");
+            errors.push(user[i].key);
             isValid = false;
           }
         }
@@ -136,7 +125,8 @@ const RegistrationForm = () => {
     if (isValid) {
       register(user);
     } else {
-      alert(errors);
+      let errorMessage = `These fields are required:\n\n${errors.join("\n")}`;
+      alert(errorMessage);
     }
   };
 
