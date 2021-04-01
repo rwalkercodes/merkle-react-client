@@ -46,6 +46,7 @@ const RegistrationForm = () => {
           body: JSON.stringify(user),
         }
       );
+      console.log(JSON.stringify(user));
       history.push({
         pathname: "confirmation",
       });
@@ -102,7 +103,7 @@ const RegistrationForm = () => {
           }
           if (i === "zipCode") {
             if (user[i].value.length === 5 || user[i].value.length === 9) {
-              setZipCode(parseInt(user[i]));
+              setZipCode(parseInt(user[i].value));
             } else if (user[i].value.length === undefined) {
               errors.push("Please re-ender your zip code.");
               isValid = false;
@@ -123,7 +124,17 @@ const RegistrationForm = () => {
     }
 
     if (isValid) {
-      register(user);
+      const registeringUser = {
+        firstName: user.firstName.value,
+        lastName: user.lastName.value,
+        address1: user.address1.value,
+        address2: user.address2.value,
+        city: user.city.value,
+        stateAbbrev: user.state.value,
+        zipCode: user.zipCode.value,
+        country: user.country.value,
+      };
+      register(registeringUser);
     } else {
       let errorMessage = `These fields are required:\n\n${errors.join("\n")}`;
       alert(errorMessage);
@@ -140,24 +151,26 @@ const RegistrationForm = () => {
       <div style={pleaseSignIn}>Registration Form</div>
       <div>
         <div style={padding}>
-          <label style={labels}>First Name</label>
+          <label style={labels}>* First Name</label>
           <input
             type="text"
             className="form-control"
             style={inputs}
             value={firstName}
+            required={true}
             onChange={(e) => {
               setFirstName(e.target.value);
             }}
           />
         </div>
         <div style={padding}>
-          <label style={labels}>Last Name</label>
+          <label style={labels}>* Last Name</label>
           <input
             type="text"
             className="form-control"
             style={inputs}
             value={lastName}
+            required={true}
             onChange={(e) => {
               setLastName(e.target.value);
             }}
@@ -170,19 +183,20 @@ const RegistrationForm = () => {
               marginRight: "11px",
             }}
           >
-            Address 1
+            * Address 1
           </label>
           <input
             type="text"
             className="form-control"
             style={inputs}
             value={address1}
+            required={true}
             onChange={(e) => {
               setAddress1(e.target.value);
             }}
           />
         </div>
-        <div style={padding}>
+        <div style={{ marginLeft: "12px", padding: "5px" }}>
           <label
             style={{
               marginLeft: "35px",
@@ -208,13 +222,14 @@ const RegistrationForm = () => {
               marginRight: "9px",
             }}
           >
-            City
+            * City
           </label>
           <input
             type="text"
             className="form-control"
             style={inputs}
             value={city}
+            required={true}
             onChange={(e) => {
               setCity(e.target.value);
             }}
@@ -222,13 +237,14 @@ const RegistrationForm = () => {
         </div>
         <div style={padding}>
           <label style={{ marginLeft: "35px", marginRight: "9px" }}>
-            State
+            * State
           </label>
           <select
             style={{
               marginRight: "39px",
               width: "145px",
             }}
+            required={true}
             onChange={(e) => {
               setState(e.target.value);
             }}
@@ -240,13 +256,13 @@ const RegistrationForm = () => {
           </select>
         </div>
         <div style={{ padding: "5px", marginLeft: "10px" }}>
-          <label style={labels}>Zip Code</label>
+          <label style={labels}>* Zip Code</label>
           <input
-            type="text"
             pattern="[0-9]*"
             className="form-control"
             style={inputs}
             value={zipCode}
+            required={true}
             placeholder="Numeric value of 5 or 9"
             onChange={(e) => {
               if (e.target.validity.valid) setZipCode(e.target.value);
@@ -272,6 +288,7 @@ const RegistrationForm = () => {
       <button style={pleaseSignIn} type="submit">
         Register
       </button>
+      <div style={{ fontSize: "14px" }}>* = required</div>
     </form>
   );
 };

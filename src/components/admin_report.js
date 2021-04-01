@@ -32,7 +32,14 @@ const AdminReport = () => {
   return (
     <>
       <div className="adminReport">
-        <table className="userTable">
+        <table
+          className="userTable"
+          style={{
+            paddingTop: "10px",
+            marginLeft: "auto",
+            marginRight: "auto",
+          }}
+        >
           <thead>
             <tr>
               <th>First Name</th>
